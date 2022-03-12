@@ -153,19 +153,37 @@ void availableBus(){
 
 
 void bookTickets(){
-    int num;
+     int num,i,j;
     char em[20] = {"Empty"};
-    printf("========BUS RESERVATION SYSTEM==========\n");
-    printf("Enter Bus no. :- ");
-    scanf("%d",&num);
+printf("========BUS RESERVATION SYSTEM==========\n");
+printf("Enter Bus no. :- ");
+scanf("%d",&num);
+printf("\n");
+int number =1;
+for(i=0; i<6; i++){
+    for(j=0; j<4; j++){
+    printf("%d.%s    ",number,em);
+    number++;
+    }
     printf("\n");
-    int number =1;
-    for(int i=1; i<=6; i++){
-        for(int j=1; j<=4; j++){
-            printf("%d.%s    ",number,em);
-            number++;
-        }
-        printf("\n");
+}
+int AvTic = i*j;
+    printf("Available Tickets:--------> %d\n\n",AvTic);
+    int num_Tic, seat_num, p_Mob_No, P_Trav_Date;
+    char p_name[20];
+    printf("Numbers Of Tickets you want to Book:--->");
+    scanf("%d",&num_Tic);
+    printf("\n");
+    for(int m=1; m<=num_Tic; m++){
+        printf("============Enter your details for Ticket no.%d============\n",m);
+        printf("Seat number:-------->");
+        scanf("%d",&seat_num);
+        printf("Passenger name:-------->");
+        getchar();
+       gets(p_name);
+        printf("Passenger Mobile number:-------->");
+        scanf("%d",&p_Mob_No);
+      getch();
     }
 }
 
