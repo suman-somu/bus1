@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1647064435 source:d:\projects\programming\c programs\bus1\bussystem\main.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<conio.h>
+	<time.h>
+
