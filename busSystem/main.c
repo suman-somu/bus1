@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <conio.h>
 #include <time.h>
+#include <windows.h>
 
 
 void start();
@@ -110,7 +111,7 @@ void showMenu(){
 
 
     if (chooseOption==1){
-            printf("in the process of building");
+            //printf("in the process of building");
             availableBus();
     }
     else if(chooseOption==2){
@@ -147,27 +148,28 @@ void availableBus(){
     printf("605157          Ranchi Lines                Ranchi                  600            19:00 to 06:00 (506 km)\n");
     printf("607388          Nagpur Express              Nagpur                  1000           05:00 to 22:30 (840 km)\n\n");
 
+    showMenu();
 
 
 }
 
 
 void bookTickets(){
-     int num,i,j;
+    int num,i,j;
     char em[20] = {"Empty"};
-printf("========BUS RESERVATION SYSTEM==========\n");
-printf("Enter Bus no. :- ");
-scanf("%d",&num);
-printf("\n");
-int number =1;
-for(i=0; i<6; i++){
-    for(j=0; j<4; j++){
-    printf("%d.%s    ",number,em);
-    number++;
-    }
+    printf("========BUS RESERVATION SYSTEM==========\n");
+    printf("Enter Bus no. :- ");
+    scanf("%d",&num);
     printf("\n");
-}
-int AvTic = i*j;
+    int number =1;
+    for(i=0; i<6; i++){
+        for(j=0; j<4; j++){
+        printf("%d.%s    ",number,em);
+        number++;
+        }
+        printf("\n");
+    }
+    int AvTic = i*j;
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic, seat_num, p_Mob_No, P_Trav_Date;
     char p_name[20];
@@ -180,7 +182,7 @@ int AvTic = i*j;
         scanf("%d",&seat_num);
         printf("Passenger name:-------->");
         getchar();
-       gets(p_name);
+        gets(p_name);
         printf("Passenger Mobile number:-------->");
         scanf("%d",&p_Mob_No);
       getch();
