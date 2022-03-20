@@ -167,15 +167,16 @@ void bookTickets(){
 
 
 
-    FILE *fptr = ("2.txt","r");
+    FILE *fptr = fopen("2.txt","r");
     for(int i=1; i<=24;i++){
-        printf("%d. ",i);
+        printf("%d.",i);
 
         for(int j=1;j<7;j++){
             //char ch;
             // fscanf(fptr,"%[^\n ] ",ch);
             printf(" %c",fgetc(fptr));
         }
+        printf("\n");
     }
 
 
