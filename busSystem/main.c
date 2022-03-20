@@ -39,6 +39,8 @@ void start(){
     bool UserNameValid = Valid();
     if(UserNameValid==true){
         printf("\n");
+
+        
         printf("----------------------------------------LOGIN IS SUCCESSFUL-------------------------------------------------\n");
         //printf("==============================WELCOME TO SHS BUS RESERVATION SYSTEM!!!======================================\n");
         //printf("------------------------------------------------------------------------------------------------------------\n");
@@ -46,13 +48,13 @@ void start(){
         getch();
 
         printf("LOADING");
-        Sleep(1000);
+        Sleep(500);
         printf(".");
-        Sleep(1000);
+        Sleep(500);
         printf(".");
-        Sleep(1000);
+        Sleep(500);
         printf(".");
-        Sleep(1000);
+        Sleep(500);
 
 
         showMenu();
@@ -86,6 +88,7 @@ bool Valid(){
         printf("                    ENTER PASSWORD :- ");
         gets(pass);
 
+        Sleep(2000);
         if(strcmp(pass,pCheck)==0){
                 return true;
         }
@@ -177,7 +180,7 @@ void bookTickets(){
     scanf("%d",&num_Tic);
     printf("\n");
     for(int m=1; m<=num_Tic; m++){
-        printf("============Enter your details for Ticket no.%d============\n",m);
+        printf("============Enter your details for Ticket no %d= \n",m);
         printf("Seat number:-------->");
         scanf("%d",&seat_num);
         printf("Passenger name:-------->");
