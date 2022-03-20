@@ -40,7 +40,7 @@ void start(){
     if(UserNameValid==true){
         printf("\n");
 
-        
+
         printf("----------------------------------------LOGIN IS SUCCESSFUL-------------------------------------------------\n");
         //printf("==============================WELCOME TO SHS BUS RESERVATION SYSTEM!!!======================================\n");
         //printf("------------------------------------------------------------------------------------------------------------\n");
@@ -64,8 +64,6 @@ void start(){
         printf("WRONG CREDENTIALS");
     }
 
-
-
 }
 
 
@@ -88,7 +86,7 @@ bool Valid(){
         printf("                    ENTER PASSWORD :- ");
         gets(pass);
 
-        Sleep(2000);
+        Sleep(1000);
         if(strcmp(pass,pCheck)==0){
                 return true;
         }
@@ -132,6 +130,7 @@ void showMenu(){
     }
     else {
         printf("WRONG OPTION\n");
+        showMenu();
     }
 
 }
@@ -164,6 +163,27 @@ void bookTickets(){
     printf("Enter Bus no. :- ");
     scanf("%d",&num);
     printf("\n");
+
+
+
+
+    FILE *fptr = ("2.txt","r");
+    for(int i=1; i<=24;i++){
+        printf("%d. ",i);
+
+        for(int j=1;j<7;j++){
+            //char ch;
+            // fscanf(fptr,"%[^\n ] ",ch);
+            printf(" %c",fgetc(fptr));
+        }
+    }
+
+
+    printf("\n");
+
+
+
+
     int number =1;
     for(i=0; i<6; i++){
         for(j=0; j<4; j++){
@@ -188,11 +208,12 @@ void bookTickets(){
         gets(p_name);
         printf("Passenger Mobile number:-------->");
         scanf("%d",&p_Mob_No);
-        getch();
+
+        Sleep(300);
     }
 
 
-    Sleep(1000);
+    Sleep(500);
     printf("ticket booked\n");
 
     showMenu();
