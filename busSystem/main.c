@@ -188,7 +188,7 @@ void bookTickets(){
         gets(p_name);
         printf("Passenger Mobile number:-------->");
         scanf("%d",&p_Mob_No);
-      getch();
+        getch();
     }
 
 
