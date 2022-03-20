@@ -190,5 +190,11 @@ void bookTickets(){
         scanf("%d",&p_Mob_No);
       getch();
     }
+
+
+    Sleep(1000);
+    printf("ticket booked\n");
+
+    showMenu();
 }
 
