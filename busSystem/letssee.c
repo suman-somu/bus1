@@ -167,45 +167,18 @@ void bookTickets(){
 
 
 
-    FILE *fptr;
 
-    if(num ==1){
-         fptr = fopen("1.txt","r");
-    }
-    else if (num ==2){
-         fptr = fopen("2.txt","r");
-    }
-    else if (num ==3){
-         fptr = fopen("3.txt","r");
-    }
-    else if (num ==4){
-         fptr = fopen("4.txt","r");
-    }
-    else if (num ==5){
-         fptr = fopen("5.txt","r");
-    }
-    else if (num ==6){
-         fptr = fopen("6.txt","r");
-    }
-    else if (num ==7){
-         fptr = fopen("7.txt","r");
-    }
-    else if (num ==8){
-         fptr = fopen("8.txt","r");
-    }
-    else if (num ==9){
-         fptr = fopen("9.txt","r");
-    }
-
+    FILE *fptr = fopen("2.txt","r");
     for(int i=1; i<=32;i++){
         printf("%d.",i);
+
 
         for(int j=1;j<=6;j++){
             //char ch;
             // fscanf(fptr,"%[^\n ] ",ch);
             printf("%c",fgetc(fptr));
         }
-        fgetc(fptr);
+        // fgetc(fptr);
         // fgetc(fptr);
         //fgetc(fptr);
         printf("\n");
@@ -225,7 +198,7 @@ void bookTickets(){
     //     }
     //     printf("\n");
     // }
-    int AvTic = 20;
+    int AvTic = i*j;
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic, seat_num, p_Mob_No, P_Trav_Date;
     char p_name[20];
