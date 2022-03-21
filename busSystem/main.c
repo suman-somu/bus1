@@ -104,6 +104,9 @@ bool Valid(){
 
 //show menu and go to respective functions
 void showMenu(){
+
+    system("cls");
+
     printf("\n\nWELCOME TO SHS BUS RESERVATION SYSTEM\n");
     printf("1.\tView all available bus\n2.\tBook tickets\n3.\tCancel tickets\n4.\tView book tickets\n5.\tExit\n\n");
 

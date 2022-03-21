@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1647799835 source:d:\projects\programming\c programs\bus1\bussystem\main.c
+1647834683 source:d:\projects\programming\c programs\bus1\bussystem\main.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
