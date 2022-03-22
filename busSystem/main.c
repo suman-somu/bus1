@@ -4,6 +4,12 @@
 #include <conio.h>
 #include <time.h>
 #include <windows.h>
+#include <string.h>
+
+
+#define FILENAME_SIZE 1024
+#define MAX_LINE 2048
+
 
 
 void start();
@@ -16,6 +22,8 @@ void availableBus();
 
 void bookTickets();
 
+void updateBus(char name[], int seatNumber, char filename[]);
+
 int main(){
 
 
@@ -24,7 +32,6 @@ int main(){
 
     return 0;
 }
-
 
 
 void start(){
@@ -65,7 +72,6 @@ void start(){
     }
 
 }
-
 
 
 //takes user input of user-name and password and checks if it's matching or not
@@ -154,6 +160,8 @@ void availableBus(){
     printf("605157          Ranchi Lines                Ranchi                  600            19:00 to 06:00 (506 km)\n");
     printf("607388          Nagpur Express              Nagpur                  1000           05:00 to 22:30 (840 km)\n\n");
 
+    printf("press anything to return");
+    getch();
     showMenu();
 
 
@@ -170,36 +178,33 @@ void bookTickets(){
 
 
 
-    FILE *fptr;
 
-    if(num ==1){
-         fptr = fopen("1.txt","r");
-    }
-    else if (num ==2){
-         fptr = fopen("2.txt","r");
-    }
-    else if (num ==3){
-         fptr = fopen("3.txt","r");
-    }
-    else if (num ==4){
-         fptr = fopen("4.txt","r");
-    }
-    else if (num ==5){
-         fptr = fopen("5.txt","r");
-    }
-    else if (num ==6){
-         fptr = fopen("6.txt","r");
-    }
-    else if (num ==7){
-         fptr = fopen("7.txt","r");
-    }
-    else if (num ==8){
-         fptr = fopen("8.txt","r");
-    }
-    else if (num ==9){
-         fptr = fopen("9.txt","r");
-    }
+    char filename[FILENAME_SIZE];
+    if (num==606910)
+    strcpy(filename,"1.txt");
+    else if (num==606911)
+        strcpy(filename,"2.txt");
+    else if (num==606912)
+        strcpy(filename,"3.txt");
+    else if (num==606913)
+        strcpy(filename,"4.txt");
+    else if (num==606914)
+        strcpy(filename,"5.txt");
+    else if (num==606915)
+        strcpy(filename,"6.txt");
+    else if (num==606916)
+        strcpy(filename,"7.txt");
+    else if (num==606917)
+        strcpy(filename,"8.txt");
+    else if (num==606918)
+        strcpy(filename,"9.txt");
+    else if (num==606919)
+        strcpy(filename,"10.txt");
 
+    FILE *fptr = fopen(filename,"r");
+
+
+    //print the bus seats status
     for(int i=1; i<=32;i++){
         printf("%d.",i);
 
@@ -213,8 +218,6 @@ void bookTickets(){
         //fgetc(fptr);
         printf("\n");
     }
-
-
     printf("\n");
 
 
@@ -228,10 +231,11 @@ void bookTickets(){
     //     }
     //     printf("\n");
     // }
+
     int AvTic = 20;
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic, seat_num, p_Mob_No, P_Trav_Date;
-    char p_name[20];
+    char p_name[MAX_LINE];
     printf("Numbers Of Tickets you want to Book:--->");
     scanf("%d",&num_Tic);
     printf("\n");
@@ -249,9 +253,71 @@ void bookTickets(){
     }
 
 
+    updateBus(p_name, seat_num,filename);
+
+
     Sleep(500);
     printf("ticket booked\n");
-
+    fclose(fptr);
+    printf("press any key to continue");
+    getch();
     showMenu();
 }
 
+
+void updateBus(char name[], int seatNumber, char filename[]){
+
+    FILE *file,*temp;
+    
+    
+    
+    char temp_filename[FILENAME_SIZE];
+
+    char buffer[MAX_LINE];
+
+
+
+    strcpy(temp_filename, "temp____");
+    strcat(temp_filename, filename);
+
+    file= fopen(filename,"r");
+    temp = fopen(temp_filename,"w");
+
+
+    if (file == NULL || temp == NULL)
+    {
+        printf("Error opening files(s).\n");
+        return 1;
+    }
+
+
+
+    bool keep_reading = true;
+
+    int current_line = 1;
+
+    do{
+
+        fgets(buffer, MAX_LINE, file);
+
+        if (feof(file)) keep_reading = false;
+        else if (current_line ==  seatNumber){
+            fputs(name, temp);
+            
+        }
+        else {
+            fputs(buffer, temp);
+            
+        }
+
+        current_line++;
+    }while(keep_reading);
+
+
+    fclose(file);
+    fclose(temp);
+    
+    remove(filename);
+    rename(temp_filename,filename);
+
+}
