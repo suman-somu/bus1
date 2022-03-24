@@ -23,6 +23,7 @@ void availableBus();
 void bookTickets();
 
 void updateBus(char name[], int seatNumber, char filename[]);
+void view_Tickets(int Bus_Num,int seat_Num, char Pass_Nam[]);
 
 int main(){
 
@@ -68,7 +69,7 @@ void start(){
 
     }
     else{
-        printf("WRONG CREDENTIALS");
+        printf("INVALID USERNAME/PASSWORD");
     }
 
 }
@@ -132,7 +133,9 @@ void showMenu(){
             printf("in the process of building");
     }
     else if(chooseOption==4){
-            printf("in the process of building");
+            int Bus_Num, seat_Num;
+        char Pass_Nam[20];
+        view_Tickets(Bus_Num, seat_Num, Pass_Nam);
     }
     else if (chooseOption==5){
             printf("thank you ");
@@ -167,7 +170,12 @@ void availableBus(){
 
 }
 
-
+void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
+     FILE *vbt;
+       vbt = fopen("ViewTickets.txt","r");
+        fscanf(vbt,"%d %d %s ",&Bus_Num, &seat_Num,Pass_Nam);
+ printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 05:00\nFare           : 100\n\n",Bus_Num,seat_Num,Pass_Nam);
+}
 void bookTickets(){
     int num,i,j;
     char em[20] = {"Empty"};
@@ -245,21 +253,25 @@ void bookTickets(){
         scanf("%d",&seat_num);
         printf("Passenger name:-------->");
         getchar();
-        gets(p_name);
-        printf("Passenger Mobile number:-------->");
-        scanf("%d",&p_Mob_No);
-
-        Sleep(300);
+        gets(p_name)
     }
-
-
-    updateBus(p_name, seat_num,filename);
-
-
-    Sleep(500);
-    printf("ticket booked\n");
-    fclose(fptr);
-    printf("press any key to continue");
+    updateBus(char name[], int seatNumber, char filename[]);
+  FILE *vbt;
+         vbt = fopen("ViewTickets.txt","w");
+     fprintf(vbt, "%d %d %s ",Bus_Num, seat_Num, Pass_Nam);
+     fclose(vbt);
+    }
+    char yes, confirm = 'y';
+    printf("Total Fare is 100\n");
+    printf("Confirm(y/n) : ");
+    scanf("%c",&yes);
+    if(yes==confirm){
+    printf("------------ticket booked-------------\n");
+    }
+    else{
+        printf("your ticket has not been booked\n");
+    }
+printf("press any key to go back to main menu\n");
     getch();
     showMenu();
 }
