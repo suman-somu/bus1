@@ -257,15 +257,15 @@ void bookTickets(){
 
     FILE *fptr = fopen(filename,"r");
 
-
+    char c = 'a';
     //print the bus seats status
-    for(int i=1; i<=31;i++){
+    for(int i=1 ; c!=EOF ; i++){
         printf("%d.",i);
 
-        for(int j=1;20;j++){
+        for(int j=1;;j++){
             //char ch;
             // fscanf(fptr,"%[^\n ] ",ch);
-            char c = fgetc(fptr);
+            c = fgetc(fptr);
             if(c == '$'){
                 break;
             }
@@ -273,18 +273,18 @@ void bookTickets(){
             printf("%c",c);
 
         }
-        fgetc(fptr);
+        c =fgetc(fptr);
         // fgetc(fptr);
         //fgetc(fptr);
         printf("\n");
     }
     printf("\n");
-
+    fclose(fptr);
 
     int AvTic = 20;
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic,Seat_Num;
-    char Pass_Nam[MAX_LINE];
+    char Pass_Nam[20];
     printf("Numbers Of Tickets you want to Book:--->");
     scanf("%d",&num_Tic);
     printf("\n");
@@ -296,32 +296,36 @@ void bookTickets(){
         getchar();
         gets(Pass_Nam);
 
+
+        updateBus(Pass_Nam, Bus_Num,filename);
+
+        char yes,ch = 'y';
+        printf("Confirm(y/n) : ");
+        scanf("%c",&yes);
+        if(ch==yes){
+            printf("ticket booked\n");
+            FILE *vbt = fopen("ViewTickets.txt","a");
+            fprintf(vbt, "\n%d %d %s ",Bus_Num,Seat_Num, Pass_Nam);
+            fclose(vbt);
+        }else{
+            printf("Your ticket has not been booked\n");
+        }
+
+        
         Sleep(300);
     }
 
 
-    printf("%s\n",Pass_Nam);
+    //printf("%s\n",Pass_Nam);
 
 
-    char yes,ch = 'y';
-    printf("Confirm(y/n) : ");
-    scanf("%c",&yes);
-    if(ch==yes){
-        printf("ticket booked\n");
-         FILE *vbt = fopen("ViewTickets.txt","a");
-     fprintf(vbt, "%d %d %s ",Bus_Num,Seat_Num, Pass_Nam);
-     fclose(vbt);
-    }else{
-        printf("Your tickets has not been booked\n");
-    }
+  
+    Sleep(500);
     printf("----------------------press any key to go back to main menu-----------------------------");
 
 
-    fclose(fptr);
-    updateBus(Pass_Nam, Bus_Num,filename);
-
-
-    Sleep(500);
+    
+    
 
     getch();
     showMenu();
