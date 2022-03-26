@@ -16,7 +16,7 @@ bool Valid();
 void availableBus();
 void bookTickets();
 void updateBus(char name[], int seatNumber, char filename[]);
-void view_Tickets(int Bus_Num,int seat_Num, char Pass_Nam[]);
+void view_Tickets();
 void printBus(char filename[]);
 
 int main(){
@@ -115,9 +115,7 @@ void showMenu(){
             printf("in the process of building");
     }
     else if(chooseOption==4){
-            int Bus_Num, seat_Num;
-            char Pass_Nam[20];
-            view_Tickets(Bus_Num, seat_Num, Pass_Nam);
+            view_Tickets();
     }
     else if (chooseOption==5){
             printf("thank you ");
@@ -154,7 +152,11 @@ void availableBus(){
 }
 
 
-void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
+void view_Tickets(){
+    int Bus_Num;
+    int seat_Num;
+    char Pass_Nam[MAX_LINE];
+
     FILE *vbt;
     vbt = fopen("ViewTickets.txt","r");
 
@@ -166,44 +168,53 @@ void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
         if(feof(vbt)){
             willContinue = false;
         }
-    }
-
-    fscanf(vbt,"%d %d %s ",&Bus_Num, &seat_Num,Pass_Nam);
-    if(Bus_Num==606910){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 08:00 to 10:00 (58 km)\nFare           : 50\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==606911){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Brahmapur\nTime           : 09:00 to 00:30 (164 km)\nFare           : 150\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==606912){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to  Cuttack\nTime           : 13:00 to 13:50 (34 km)\nFare           : 30\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==606913){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Balasore\nTime           : 06:00 to 10:50 (207 km)\nFare           : 200\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==606914){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Rourkela\nTime           : 22:00 to 06:00 (327 km)\nFare           : 500\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==606915){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Sambalpur\nTime           : 21:00 to 04:30 (319 km)\nFare           : 450\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==605822){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Kolkata\nTime           : 06:00 to 16:00 (450 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==604049){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Hyderabad\nTime           : 16:00 to 12:00 (1024 km)\nFare           : 1200\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==605157){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Ranchi\nTime           : 19:00 to 06:00 (506 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
-    else if(Bus_Num==607388){
-        printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
-    }
 
 
+        fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num,&Pass_Nam);
+        if(Bus_Num==606910){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 08:00 to 10:00 (58 km)\nFare           : 50\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==606911){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Brahmapur\nTime           : 09:00 to 00:30 (164 km)\nFare           : 150\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==606912){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to  Cuttack\nTime           : 13:00 to 13:50 (34 km)\nFare           : 30\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==606913){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Balasore\nTime           : 06:00 to 10:50 (207 km)\nFare           : 200\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==606914){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Rourkela\nTime           : 22:00 to 06:00 (327 km)\nFare           : 500\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==606915){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Sambalpur\nTime           : 21:00 to 04:30 (319 km)\nFare           : 450\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==605822){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Kolkata\nTime           : 06:00 to 16:00 (450 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==604049){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Hyderabad\nTime           : 16:00 to 12:00 (1024 km)\nFare           : 1200\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==605157){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Ranchi\nTime           : 19:00 to 06:00 (506 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+        else if(Bus_Num==607388){
+            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
+        }
+
+        fgetc(vbt);
+        fgetc(vbt);
+        fgetc(vbt);
+    }
+
+    
+
+    printf("enter any key to return to menu");
+    getch();
 
     fclose(vbt);
 
+    showMenu();
 }
 
 
