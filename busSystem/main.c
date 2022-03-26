@@ -109,7 +109,7 @@ void showMenu(){
             availableBus();
     }
     else if(chooseOption==2){
-            printf("in the process of building");
+            //printf("in the process of building");
             bookTickets();
     }
     else if (chooseOption==3){
@@ -117,14 +117,15 @@ void showMenu(){
     }
     else if(chooseOption==4){
             int Bus_Num, seat_Num;
-        char Pass_Nam[20];
-        view_Tickets(Bus_Num, seat_Num, Pass_Nam);
+            char Pass_Nam[20];
+            view_Tickets(Bus_Num, seat_Num, Pass_Nam);
     }
     else if (chooseOption==5){
             printf("thank you ");
     }
     else {
-        printf("WRONG OPTION\n");
+        printf("WRONG OPTION\nENTER CORRECT OPTION\n\npress anything to continue");
+        getch();
         showMenu();
     }
 
@@ -226,20 +227,26 @@ void bookTickets(){
         strcpy(filename,"10.txt");
     else{
         printf("No bus found\n");
-        
+
     }
 
     FILE *fptr = fopen(filename,"r");
 
 
     //print the bus seats status
-    for(int i=1; i<=32;i++){
+    for(int i=1; i<=31;i++){
         printf("%d.",i);
 
-        for(int j=1;j<=6;j++){
+        for(int j=1;20;j++){
             //char ch;
             // fscanf(fptr,"%[^\n ] ",ch);
-            printf("%c",fgetc(fptr));
+            char c = fgetc(fptr);
+            if(c == '$'){
+                break;
+            }
+
+            printf("%c",c);
+
         }
         fgetc(fptr);
         // fgetc(fptr);
@@ -277,6 +284,9 @@ void bookTickets(){
 
         Sleep(300);
     }
+
+
+    printf("%s\n",Pass_Nam);
     if (Bus_Num==606910)
     printf("Total fare is 50\n");
     else if (Bus_Num==606911)
@@ -303,14 +313,14 @@ void bookTickets(){
     scanf("%c",&yes);
     if(ch==yes){
         printf("ticket booked\n");
-         FILE *vbt = fopen("ViewTickets.txt","w");
+         FILE *vbt = fopen("ViewTickets.txt","a");
      fprintf(vbt, "%d %d %s ",Bus_Num,Seat_Num, Pass_Nam);
      fclose(vbt);
     }else{
         printf("Your tickets has not been booked\n");
     }
     printf("----------------------press any key to go back to main menu-----------------------------");
-   
+
 
     fclose(fptr);
     updateBus(Pass_Nam, Bus_Num,filename);
@@ -377,5 +387,5 @@ void updateBus(char name[], int seatNumber, char filename[]){
 
     remove(filename);
     rename(temp_filename,filename);
-  
+
 }
