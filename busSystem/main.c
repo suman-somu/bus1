@@ -189,6 +189,11 @@ void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
         if(Bus_Num==607388){
  printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
+
+
+
+        fclose(vbt);
+
 }
 
 
@@ -201,6 +206,26 @@ void bookTickets(){
     printf("\n");
 
 
+    if (Bus_Num==606910)
+    printf("Total fare is 50\n");
+    else if (Bus_Num==606911)
+        printf("Total fare is 150\n");
+    else if (Bus_Num==606912)
+        printf("Total fare is 30\n");
+    else if (Bus_Num==606913)
+        printf("Total fare is 200\n");
+    else if (Bus_Num==606914)
+       printf("Total fare is 500\n");
+    else if (Bus_Num==606915)
+        printf("Total fare is 400\n");
+    else if (Bus_Num==605822)
+        printf("Total fare is 600\n");
+    else if (Bus_Num==604049)
+        printf("Total fare is 1200\n");
+    else if (Bus_Num==605157)
+        printf("Total fare is 600\n");
+    else if (Bus_Num==607388)
+        printf("Total fare is 1000\n");
 
 
    char filename[FILENAME_SIZE];
@@ -256,17 +281,6 @@ void bookTickets(){
     printf("\n");
 
 
-
-
-    // int number =1;
-    // for(i=0; i<6; i++){
-    //     for(j=0; j<4; j++){
-    //     printf("%d.%s    ",number,em);
-    //     number++;
-    //     }
-    //     printf("\n");
-    // }
-
     int AvTic = 20;
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic,Seat_Num;
@@ -287,27 +301,8 @@ void bookTickets(){
 
 
     printf("%s\n",Pass_Nam);
-    if (Bus_Num==606910)
-    printf("Total fare is 50\n");
-    else if (Bus_Num==606911)
-        printf("Total fare is 150\n");
 
-    else if (Bus_Num==606912)
-        printf("Total fare is 30\n");
-    else if (Bus_Num==606913)
-        printf("Total fare is 200\n");
-    else if (Bus_Num==606914)
-       printf("Total fare is 500\n");
-    else if (Bus_Num==606915)
-        printf("Total fare is 400\n");
-    else if (Bus_Num==605822)
-        printf("Total fare is 600\n");
-    else if (Bus_Num==604049)
-        printf("Total fare is 1200\n");
-    else if (Bus_Num==605157)
-        printf("Total fare is 600\n");
-    else if (Bus_Num==607388)
-        printf("Total fare is 1000\n");
+
     char yes,ch = 'y';
     printf("Confirm(y/n) : ");
     scanf("%c",&yes);
