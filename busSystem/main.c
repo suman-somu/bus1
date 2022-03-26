@@ -11,31 +11,15 @@
 #define MAX_LINE 2048
 
 
-
-void start();
-
 void showMenu();
-
 bool Valid();
-
 void availableBus();
-
 void bookTickets();
-
 void updateBus(char name[], int seatNumber, char filename[]);
 void view_Tickets(int Bus_Num,int seat_Num, char Pass_Nam[]);
 
+
 int main(){
-
-
-    start();
-
-
-    return 0;
-}
-
-
-void start(){
 
     printf("                                                       BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -44,11 +28,11 @@ void start(){
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
 
-   bool UserNameValid = Valid();
+    bool UserNameValid = Valid();
     if(UserNameValid==true){
         printf("\n");
 
-    printf("LOADING");
+        printf("LOADING");
         Sleep(500);
         printf(".");
         Sleep(500);
@@ -69,6 +53,7 @@ void start(){
         printf("INVALID USERNAME/PASSWORD");
     }
 
+    return 0;
 }
 
 
@@ -168,6 +153,7 @@ void availableBus(){
 
 }
 
+
 void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
      FILE *vbt;
        vbt = fopen("ViewTickets.txt","r");
@@ -203,6 +189,7 @@ void view_Tickets(int Bus_Num, int seat_Num, char Pass_Nam[]){
  printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
 }
+
 
 void bookTickets(){
     int Bus_Num,i,j;
@@ -275,7 +262,7 @@ void bookTickets(){
 
     int AvTic = 20;
     printf("Available Tickets:--------> %d\n\n",AvTic);
-    int num_Tic, Bus_Num,Seat_Num;
+    int num_Tic,Seat_Num;
     char Pass_Nam[MAX_LINE];
     printf("Numbers Of Tickets you want to Book:--->");
     scanf("%d",&num_Tic);
