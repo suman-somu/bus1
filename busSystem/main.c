@@ -192,6 +192,7 @@ void bookTickets(){
     strcpy(filename,"1.txt");
     else if (num==606911)
         strcpy(filename,"2.txt");
+
     else if (num==606912)
         strcpy(filename,"3.txt");
     else if (num==606913)
@@ -254,24 +255,20 @@ void bookTickets(){
         printf("Passenger name:-------->");
         getchar();
         gets(p_name)
+        printf("Passenger Mobile number:-------->");
+        scanf("%d",&p_Mob_No);
+
+        Sleep(300);
     }
-    updateBus(char name[], int seatNumber, char filename[]);
-  FILE *vbt;
-         vbt = fopen("ViewTickets.txt","w");
-     fprintf(vbt, "%d %d %s ",Bus_Num, seat_Num, Pass_Nam);
-     fclose(vbt);
-    }
-    char yes, confirm = 'y';
-    printf("Total Fare is 100\n");
-    printf("Confirm(y/n) : ");
-    scanf("%c",&yes);
-    if(yes==confirm){
-    printf("------------ticket booked-------------\n");
-    }
-    else{
-        printf("your ticket has not been booked\n");
-    }
-printf("press any key to go back to main menu\n");
+
+    fclose(fptr);
+    updateBus(p_name, seat_num,filename);
+
+
+    Sleep(500);
+    printf("ticket booked\n");
+
+    printf("press any key to continue");
     getch();
     showMenu();
 }
@@ -280,9 +277,9 @@ printf("press any key to go back to main menu\n");
 void updateBus(char name[], int seatNumber, char filename[]){
 
     FILE *file,*temp;
-    
-    
-    
+
+
+
     char temp_filename[FILENAME_SIZE];
 
     char buffer[MAX_LINE];
@@ -315,11 +312,11 @@ void updateBus(char name[], int seatNumber, char filename[]){
         if (feof(file)) keep_reading = false;
         else if (current_line ==  seatNumber){
             fputs(name, temp);
-            
+
         }
         else {
             fputs(buffer, temp);
-            
+
         }
 
         current_line++;
@@ -328,7 +325,7 @@ void updateBus(char name[], int seatNumber, char filename[]){
 
     fclose(file);
     fclose(temp);
-    
+
     remove(filename);
     rename(temp_filename,filename);
 
