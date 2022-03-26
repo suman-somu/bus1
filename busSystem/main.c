@@ -184,6 +184,7 @@ void bookTickets(){
     strcpy(filename,"1.txt");
     else if (num==606911)
         strcpy(filename,"2.txt");
+
     else if (num==606912)
         strcpy(filename,"3.txt");
     else if (num==606913)
@@ -252,13 +253,13 @@ void bookTickets(){
         Sleep(300);
     }
 
-
+    fclose(fptr);
     updateBus(p_name, seat_num,filename);
 
 
     Sleep(500);
     printf("ticket booked\n");
-    fclose(fptr);
+
     printf("press any key to continue");
     getch();
     showMenu();
@@ -268,9 +269,9 @@ void bookTickets(){
 void updateBus(char name[], int seatNumber, char filename[]){
 
     FILE *file,*temp;
-    
-    
-    
+
+
+
     char temp_filename[FILENAME_SIZE];
 
     char buffer[MAX_LINE];
@@ -303,11 +304,11 @@ void updateBus(char name[], int seatNumber, char filename[]){
         if (feof(file)) keep_reading = false;
         else if (current_line ==  seatNumber){
             fputs(name, temp);
-            
+
         }
         else {
             fputs(buffer, temp);
-            
+
         }
 
         current_line++;
@@ -316,7 +317,7 @@ void updateBus(char name[], int seatNumber, char filename[]){
 
     fclose(file);
     fclose(temp);
-    
+
     remove(filename);
     rename(temp_filename,filename);
 
