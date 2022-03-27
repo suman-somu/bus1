@@ -8,7 +8,7 @@
 
 
 #define FILENAME_SIZE 1024
-#define MAX_LINE 20
+#define MAX_LINE 30
 
 
 void showMenu();
@@ -19,6 +19,7 @@ void updateBus(char name[], int seatNumber, char filename[]);
 void view_Tickets();
 void printBus(char filename[]);
 void startup();
+void deleteTicket(char filename[], int seatNo);
 
 int main(){
 
@@ -120,6 +121,7 @@ void showMenu(){
     }
     else if (chooseOption==3){
             printf("in the process of building");
+            cancelTickets();
     }
     else if(chooseOption==4){
             view_Tickets();
@@ -132,6 +134,144 @@ void showMenu(){
         getch();
         showMenu();
     }
+
+}
+
+
+void cancelTickets(){
+
+
+    //AVAILABLE TICKETS TO CANCEL, WHICH WILL BE FOUND FROM ViewTickets.txt
+
+
+
+    int Bus_Num,seat_number;
+    printf("========BUS RESERVATION SYSTEM==========\n");
+    printf("\nTICKET CANCELLATION\n");
+    printf("Enter Bus no. :- ");
+    scanf("%d",&Bus_Num);
+    printf("\n");
+
+
+    char filename[FILENAME_SIZE];
+    if (Bus_Num==100){
+        printf("Total fare is 50\n");
+        strcpy(filename,"1.txt");
+    }
+    else if (Bus_Num==200) {
+        printf("Total fare is 150\n");
+        strcpy(filename,"2.txt");
+    }
+    else if (Bus_Num==300) {
+        printf("Total fare is 30\n");
+        strcpy(filename,"3.txt");
+    }
+    else if (Bus_Num==400){
+        printf("Total fare is 200\n");
+        strcpy(filename,"4.txt");
+    }
+    else if (Bus_Num==500) {
+       printf("Total fare is 500\n");
+       strcpy(filename,"5.txt");
+    }
+    else if (Bus_Num==600) {
+        printf("Total fare is 400\n");
+        strcpy(filename,"6.txt");
+    }
+    else if (Bus_Num==700) {
+        printf("Total fare is 600\n");
+        strcpy(filename,"7.txt");
+    }
+    else if (Bus_Num==800){
+        printf("Total fare is 1200\n");
+        strcpy(filename,"8.txt");
+    }
+    else if (Bus_Num==900){
+        printf("Total fare is 600\n");
+        strcpy(filename,"9.txt");
+    }
+    else if (Bus_Num==1000){
+        printf("Total fare is 1000\n");
+        strcpy(filename,"10.txt");
+    }
+    else{
+        printf("No bus found\n");
+    }
+
+    printBus(filename);
+
+    printf("enter seat number = ");
+    scanf("%d",&seat_number);
+
+    deleteTicket(filename, seat_number);
+
+    printf("DELETED\n");
+    printf("press anything to continue");
+    getch();
+    showMenu();
+
+
+}
+
+
+void deleteTicket(char filename[], int seat_number){
+    FILE *file,*temp;
+
+    char name[MAX_LINE] = "empty";
+
+    char temp_filename[FILENAME_SIZE];
+
+    char buffer[MAX_LINE];
+
+
+
+    strcpy(temp_filename, "temp____");
+    strcat(temp_filename, filename);
+
+    file= fopen(filename,"r");
+    temp = fopen(temp_filename,"w");
+
+
+    if (file == NULL || temp == NULL)
+    {
+        printf("Error opening files(s).\n");
+        return 1;
+    }
+
+
+
+    bool keep_reading = true;
+
+    int current_line = 1;
+
+    do{
+
+        fgets(buffer, MAX_LINE, file);
+
+        if (feof(file)){
+            keep_reading = false;
+            fputs(buffer, temp);
+        } 
+        else if (current_line ==  seat_number){
+            fputs(name, temp);
+            fputc('$',temp);
+            fputc('\n',temp);
+        }
+        else {
+            fputs(buffer, temp);
+        }
+
+        current_line++;
+    }while(keep_reading);
+
+
+    fclose(file);
+    fclose(temp);
+
+    remove(filename);
+    rename(temp_filename,filename);
+
+
 
 }
 
@@ -227,7 +367,6 @@ void view_Tickets(){
 
 void bookTickets(){
     int Bus_Num,i,j;
-    //char em[20] = {"Empty"};
     printf("========BUS RESERVATION SYSTEM==========\n");
     printf("Enter Bus no. :- ");
     scanf("%d",&Bus_Num);
@@ -235,8 +374,8 @@ void bookTickets(){
 
     char filename[FILENAME_SIZE];
     if (Bus_Num==100){
-    printf("Total fare is 50\n");
-    strcpy(filename,"1.txt");
+        printf("Total fare is 50\n");
+        strcpy(filename,"1.txt");
     }
     else if (Bus_Num==200) {
         printf("Total fare is 150\n");
@@ -270,9 +409,7 @@ void bookTickets(){
         printf("Total fare is 600\n");
         strcpy(filename,"9.txt");
     }
-    else if (Bus_Num==1000)
-    {
-
+    else if (Bus_Num==1000){
         printf("Total fare is 1000\n");
         strcpy(filename,"10.txt");
     }
