@@ -213,7 +213,7 @@ void cancelTickets(){
 
 }
 
-
+//support function of cancelTickets()
 void deleteTicket(char filename[], int seat_number){
     FILE *file,*temp;
 
@@ -364,7 +364,7 @@ void view_Tickets(){
     showMenu();
 }
 
-
+//function used to book new tickets
 void bookTickets(){
     int Bus_Num,i,j;
     printf("========BUS RESERVATION SYSTEM==========\n");
@@ -469,7 +469,7 @@ void bookTickets(){
     showMenu();
 }
 
-
+//support function of bookTickets()
 void updateBus(char name[], int seatNumber, char filename[]){
 
     FILE *file,*temp;
@@ -532,7 +532,7 @@ void updateBus(char name[], int seatNumber, char filename[]){
 
 }
 
-
+//used to print the seats status of a particular bus file
 void printBus(char filename[]){
 
     FILE *fptr = fopen(filename,"r");
