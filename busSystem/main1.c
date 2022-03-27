@@ -1,91 +1,79 @@
-#include <stdio.h>
-#include <stdlib.h>
+int main(){
 
+   startup();
 
-struct date {
-    int dd;
-    int mm;
-    int yyyy;
-};
-typedef struct date D;
+    bool UserNameValid = Valid();
+    if(UserNameValid==true)
+    {
+        printf("----------------------------------------LOGIN IS SUCCESSFUL-------------------------------------------------\n");
+        printf("----------------Press any key to go to main menu...--------------\n");
+        getch();
 
-int main()
-{
+        showMenu();
 
-    D d1,d2,r;
+    }
+    else
+    {
+        printf("INVALID USERNAME/PASSWORD");
+        return 0;
+    }
 
-    printf("\nenter the first date in dd mm yyyy format =");
-    scanf(" %d %d %d",&(d1.dd),&(d1.mm),&(d1.yyyy));
-    printf("\nenter the second date in dd mm yyyy format =");
-    scanf(" %d %d %d",&(d2.dd),&(d2.mm),&(d2.yyyy));
+    int chooseOption = 0;
+    while (chooseOption != 5)
+    {
 
+        scanf("%d",&chooseOption);
 
-    if(d1.yyyy < d2.yyyy){
-            
-        int temp = d1.yyyy;
-        d1.yyyy = d2.yyyy;
-        d2.yyyy= temp;
-
-        temp = d1.mm;
-        d1.mm= d2.mm;
-        d2.mm= temp;
-
-        temp = d1.dd;
-        d1.dd= d2.dd;
-        d2.dd = temp;
-
-    }else if(d1.yyyy == d2.yyyy){
-        if(d1.mm == d2.mm ){
-            if(d1.dd < d2.dd){
-                int temp = d1.yyyy;
-                d1.yyyy = d2.yyyy;
-                d2.yyyy= temp;
-
-                temp = d1.mm;
-                d1.mm= d2.mm;
-                d2.mm= temp;
-
-                temp = d1.dd;
-                d1.dd= d2.dd;
-                d2.dd = temp;
-            }
+        if (chooseOption==1){
+                //printf("in the process of building");
+                availableBus();
         }
-        
-        if(d1.mm < d2.mm ){
-            int temp = d1.yyyy;
-            d1.yyyy = d2.yyyy;
-            d2.yyyy= temp;
-
-            temp = d1.mm;
-            d1.mm= d2.mm;
-            d2.mm= temp;
-
-            temp = d1.dd;
-            d1.dd= d2.dd;
-            d2.dd = temp;
+        else if(chooseOption==2){
+                //printf("in the process of building");
+                bookTickets();
+        }
+        else if (chooseOption==3){
+                printf("in the process of building");
+        }
+        else if(chooseOption==4){
+                int Bus_Num, seat_Num;
+                char Pass_Nam[20];
+                view_Tickets(Bus_Num, seat_Num, Pass_Nam);
+        }
+        else if (chooseOption==5){
+                printf("thank you ");
+        }
+        else {
+            printf("WRONG OPTION\nENTER CORRECT OPTION\n\npress anything to continue");
+            getch();
+            showMenu();
         }
     }
-
-    r.yyyy = d1.yyyy - d2.yyyy;
-    r.mm = d1.mm - d2.mm ;
-    r.dd = d1.dd - d2.dd;
-
-
-
-    if(r.dd < 0){
-        r.dd += 30;
-        r.mm -= 1;
-    }
-
-    if(r.mm <0 ){
-        r.mm +=12;
-        r.yyyy -= 1;
-    }
-
-    // if(r.yyyy <0 ){
-    //     r.yyyy *= -1;
-    // }
-
-    printf("\n\nthe difference between the two dates in dd mm yyyy, is = %d %d %d ",r.dd,r.mm,r.yyyy);
     return 0;
+}
+
+
+
+
+
+void availableBus(){
+
+    printf("--------------------------------------SHS BUS RESERVATION SYSTEM--------------------------------------------\n\n");
+    printf("Bus No.          Bus Name                 Destinations              Fare               Time\n");
+    printf("100            Puri Express                Puri                    50             08:00 to 10:00 (58 km)\n");
+    printf("200            Brahmapur Lines             Brahmapur               150            09:00 to 00:30 (164 km)\n");
+    printf("300            Cuttack Linear              Cuttack                 30             13:00 to 13:50 (34 km)\n");
+    printf("400            Balasore Express            Balasore                200            06:00 to 10:50 (207 km)\n");
+    printf("500            Rourkela Lines              Rourkela                500            22:00 to 06:00 (327 km)\n");
+    printf("600            Sambalpur Linear            Sambalpur               450            21:00 to 04:30 (319 km)\n");
+    printf("700            Kolkata Linear              Kolkata                 600            06:00 to 16:00 (450 km)\n");
+    printf("800            Hyderabad Express           Hyderabad               1200           16:00 to 12:00 (1024 km)\n");
+    printf("900            Ranchi Lines                Ranchi                  600            19:00 to 06:00 (506 km)\n");
+    printf("1000           Nagpur Express              Nagpur                  1000           05:00 to 22:30 (840 km)\n\n");
+
+    printf("press anything to return");
+    getch();
+    showMenu();
+
+
 }

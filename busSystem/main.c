@@ -18,28 +18,24 @@ void bookTickets();
 void updateBus(char name[], int seatNumber, char filename[]);
 void view_Tickets();
 void printBus(char filename[]);
+void startup();
 
 int main(){
 
-    printf("                                                       BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
-    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------\n");
-    getch();
-    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
+    startup();
 
     bool UserNameValid = Valid();
     if(UserNameValid==true){
         printf("\n");
 
-        printf("LOADING");
-        Sleep(500);
-        printf(".");
-        Sleep(500);
-        printf(".");
-        Sleep(500);
-        printf(".");
-        Sleep(500);
+        // printf("LOADING");
+        // Sleep(500);
+        // printf(".");
+        // Sleep(500);
+        // printf(".");
+        // Sleep(500);
+        // printf(".");
+        // Sleep(500);
         printf("----------------------------------------LOGIN IS SUCCESSFUL-------------------------------------------------\n");
         //printf("==============================WELCOME TO SHS BUS RESERVATION SYSTEM!!!======================================\n");
         //printf("------------------------------------------------------------------------------------------------------------\n");
@@ -54,6 +50,17 @@ int main(){
     }
 
     return 0;
+}
+
+
+void startup()
+{
+
+    printf("                                                       BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
+    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------\n");
+    getch();
+    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
 
@@ -133,16 +140,16 @@ void availableBus(){
 
     printf("--------------------------------------SHS BUS RESERVATION SYSTEM--------------------------------------------\n\n");
     printf("Bus No.          Bus Name                 Destinations              Fare               Time\n");
-    printf("606910          Puri Express                Puri                    50             08:00 to 10:00 (58 km)\n");
-    printf("606911          Brahmapur Lines             Brahmapur               150            09:00 to 00:30 (164 km)\n");
-    printf("606912          Cuttack Linear              Cuttack                 30             13:00 to 13:50 (34 km)\n");
-    printf("606913          Balasore Express            Balasore                200            06:00 to 10:50 (207 km)\n");
-    printf("606914          Rourkela Lines              Rourkela                500            22:00 to 06:00 (327 km)\n");
-    printf("606915          Sambalpur Linear            Sambalpur               450            21:00 to 04:30 (319 km)\n");
-    printf("605822          Kolkata Linear              Kolkata                 600            06:00 to 16:00 (450 km)\n");
-    printf("604049          Hyderabad Express           Hyderabad               1200           16:00 to 12:00 (1024 km)\n");
-    printf("605157          Ranchi Lines                Ranchi                  600            19:00 to 06:00 (506 km)\n");
-    printf("607388          Nagpur Express              Nagpur                  1000           05:00 to 22:30 (840 km)\n\n");
+    printf("100            Puri Express                Puri                    50             08:00 to 10:00 (58 km)\n");
+    printf("200            Brahmapur Lines             Brahmapur               150            09:00 to 00:30 (164 km)\n");
+    printf("300            Cuttack Linear              Cuttack                 30             13:00 to 13:50 (34 km)\n");
+    printf("400            Balasore Express            Balasore                200            06:00 to 10:50 (207 km)\n");
+    printf("500            Rourkela Lines              Rourkela                500            22:00 to 06:00 (327 km)\n");
+    printf("600            Sambalpur Linear            Sambalpur               450            21:00 to 04:30 (319 km)\n");
+    printf("700            Kolkata Linear              Kolkata                 600            06:00 to 16:00 (450 km)\n");
+    printf("800            Hyderabad Express           Hyderabad               1200           16:00 to 12:00 (1024 km)\n");
+    printf("900            Ranchi Lines                Ranchi                  600            19:00 to 06:00 (506 km)\n");
+    printf("1000           Nagpur Express              Nagpur                  1000           05:00 to 22:30 (840 km)\n\n");
 
     printf("press anything to return");
     getch();
@@ -220,60 +227,57 @@ void view_Tickets(){
 
 void bookTickets(){
     int Bus_Num,i,j;
-    char em[20] = {"Empty"};
+    //char em[20] = {"Empty"};
     printf("========BUS RESERVATION SYSTEM==========\n");
     printf("Enter Bus no. :- ");
     scanf("%d",&Bus_Num);
     printf("\n");
 
-
-    if (Bus_Num==606910)
+    char filename[FILENAME_SIZE];
+    if (Bus_Num==100){
     printf("Total fare is 50\n");
-    else if (Bus_Num==606911)
-        printf("Total fare is 150\n");
-    else if (Bus_Num==606912)
-        printf("Total fare is 30\n");
-    else if (Bus_Num==606913)
-        printf("Total fare is 200\n");
-    else if (Bus_Num==606914)
-       printf("Total fare is 500\n");
-    else if (Bus_Num==606915)
-        printf("Total fare is 400\n");
-    else if (Bus_Num==605822)
-        printf("Total fare is 600\n");
-    else if (Bus_Num==604049)
-        printf("Total fare is 1200\n");
-    else if (Bus_Num==605157)
-        printf("Total fare is 600\n");
-    else if (Bus_Num==607388)
-        printf("Total fare is 1000\n");
-
-
-   char filename[FILENAME_SIZE];
-    if (Bus_Num==606910)
     strcpy(filename,"1.txt");
-    else if (Bus_Num==606911)
+    }
+    else if (Bus_Num==200) {
+        printf("Total fare is 150\n");
         strcpy(filename,"2.txt");
-
-    else if (Bus_Num==606912)
+    }
+    else if (Bus_Num==300) {
+        printf("Total fare is 30\n");
         strcpy(filename,"3.txt");
-    else if (Bus_Num==606913)
+    }
+    else if (Bus_Num==400){
+        printf("Total fare is 200\n");
         strcpy(filename,"4.txt");
-    else if (Bus_Num==606914)
-        strcpy(filename,"5.txt");
-    else if (Bus_Num==606915)
+    }
+    else if (Bus_Num==500) {
+       printf("Total fare is 500\n");
+       strcpy(filename,"5.txt");
+    }
+    else if (Bus_Num==600) {
+        printf("Total fare is 400\n");
         strcpy(filename,"6.txt");
-    else if (Bus_Num==605822)
+    }
+    else if (Bus_Num==700) {
+        printf("Total fare is 600\n");
         strcpy(filename,"7.txt");
-    else if (Bus_Num==604049)
+    }
+    else if (Bus_Num==800){
+        printf("Total fare is 1200\n");
         strcpy(filename,"8.txt");
-    else if (Bus_Num==605157)
+    }
+    else if (Bus_Num==900){
+        printf("Total fare is 600\n");
         strcpy(filename,"9.txt");
-    else if (Bus_Num==607388)
+    }
+    else if (Bus_Num==1000)
+    {
+
+        printf("Total fare is 1000\n");
         strcpy(filename,"10.txt");
+    }
     else{
         printf("No bus found\n");
-
     }
 
     printBus(filename);
