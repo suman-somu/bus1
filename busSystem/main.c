@@ -20,6 +20,7 @@ void view_Tickets();
 void printBus(char filename[]);
 void startup();
 void deleteTicket(char filename[], int seatNo);
+void cancelTickets();
 
 int main(){
 
@@ -251,7 +252,7 @@ void deleteTicket(char filename[], int seat_number){
         if (feof(file)){
             keep_reading = false;
             fputs(buffer, temp);
-        } 
+        }
         else if (current_line ==  seat_number){
             fputs(name, temp);
             fputc('$',temp);
@@ -318,43 +319,43 @@ void view_Tickets(){
 
 
         fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num,&Pass_Nam);
-        if(Bus_Num==606910){
+        if(Bus_Num==100){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 08:00 to 10:00 (58 km)\nFare           : 50\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==606911){
+        else if(Bus_Num==200){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Brahmapur\nTime           : 09:00 to 00:30 (164 km)\nFare           : 150\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==606912){
+        else if(Bus_Num==300){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to  Cuttack\nTime           : 13:00 to 13:50 (34 km)\nFare           : 30\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==606913){
+        else if(Bus_Num==400){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Balasore\nTime           : 06:00 to 10:50 (207 km)\nFare           : 200\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==606914){
+        else if(Bus_Num==500){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Rourkela\nTime           : 22:00 to 06:00 (327 km)\nFare           : 500\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==606915){
+        else if(Bus_Num==600){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Sambalpur\nTime           : 21:00 to 04:30 (319 km)\nFare           : 450\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==605822){
+        else if(Bus_Num==700){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Kolkata\nTime           : 06:00 to 16:00 (450 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==604049){
+        else if(Bus_Num==800){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Hyderabad\nTime           : 16:00 to 12:00 (1024 km)\nFare           : 1200\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==605157){
+        else if(Bus_Num==900){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Ranchi\nTime           : 19:00 to 06:00 (506 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-        else if(Bus_Num==607388){
+        else if(Bus_Num==1000){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
 
         fgetc(vbt);
-        fgetc(vbt);
-        fgetc(vbt);
+        // fgetc(vbt);
+        // fgetc(vbt);
     }
 
-    
+
 
     printf("enter any key to return to menu");
     getch();
@@ -508,7 +509,7 @@ void updateBus(char name[], int seatNumber, char filename[]){
         if (feof(file)){
             keep_reading = false;
             fputs(buffer, temp);
-        } 
+        }
         else if (current_line ==  seatNumber){
             fputs(name, temp);
             fputc('$',temp);
@@ -562,3 +563,7 @@ void printBus(char filename[]){
     fclose(fptr);
 
 }
+
+
+
+//we can use fscanf for reading purpose in a file
