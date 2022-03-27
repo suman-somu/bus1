@@ -311,6 +311,7 @@ void view_Tickets(){
 
     bool willContinue = true;
 
+    int curr =1;
     while(willContinue){
 
         if(feof(vbt)){
@@ -318,7 +319,7 @@ void view_Tickets(){
         }
 
 
-        fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num,&Pass_Nam);
+        fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num, &Pass_Nam);
         if(Bus_Num==100){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 08:00 to 10:00 (58 km)\nFare           : 50\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
@@ -349,8 +350,14 @@ void view_Tickets(){
         else if(Bus_Num==1000){
             printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
         }
-
-        fgetc(vbt);
+        
+        
+        curr++;
+        if(curr<=32){
+            fseek(vbt,curr,SEEK_SET);
+        }
+        
+        //fgetc(vbt);
         // fgetc(vbt);
         // fgetc(vbt);
     }
