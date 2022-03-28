@@ -305,8 +305,12 @@ void view_Tickets(){
     int seat_Num;
     char Pass_Nam[MAX_LINE];
 
+
+
     FILE *vbt;
     vbt = fopen("ViewTickets.txt","r");
+
+    
 
 
     bool willContinue = true;
@@ -317,7 +321,6 @@ void view_Tickets(){
         if(feof(vbt)){
             willContinue = false;
         }
-
 
         fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num, &Pass_Nam);
         if(Bus_Num==100){
@@ -571,6 +574,3 @@ void printBus(char filename[]){
 
 }
 
-
-
-//we can use fscanf for reading purpose in a file
