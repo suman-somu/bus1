@@ -307,70 +307,59 @@ void view_Tickets(){
 
 
 
-    FILE *vbt;
-    vbt = fopen("ViewTickets.txt","r");
-
-    
 
 
-    bool willContinue = true;
+    FILE *vbt1;
+    vbt1 = fopen("ViewTickets.txt","r");
+    int count = 0;
+    char c1 = fgetc(vbt1);
+    while(c1 != EOF){
+        if(c1==' ' ){
+            //cnt++;
+            printf("%5s"," ");
+        }
+        printf("%c",c1);
+        c1 = fgetc(vbt1);
 
-    int curr =1;
-    while(willContinue){
+        count++;
+    }
 
-        if(feof(vbt)){
-            willContinue = false;
-        }
-
-        fscanf(vbt," %d %d %s ",&Bus_Num, &seat_Num, &Pass_Nam);
-        if(Bus_Num==100){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Puri\nTime           : 08:00 to 10:00 (58 km)\nFare           : 50\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==200){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Brahmapur\nTime           : 09:00 to 00:30 (164 km)\nFare           : 150\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==300){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to  Cuttack\nTime           : 13:00 to 13:50 (34 km)\nFare           : 30\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==400){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Balasore\nTime           : 06:00 to 10:50 (207 km)\nFare           : 200\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==500){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Rourkela\nTime           : 22:00 to 06:00 (327 km)\nFare           : 500\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==600){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Sambalpur\nTime           : 21:00 to 04:30 (319 km)\nFare           : 450\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==700){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Kolkata\nTime           : 06:00 to 16:00 (450 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==800){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Hyderabad\nTime           : 16:00 to 12:00 (1024 km)\nFare           : 1200\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==900){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Ranchi\nTime           : 19:00 to 06:00 (506 km)\nFare           : 600\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
-        else if(Bus_Num==1000){
-            printf("Bus Number     : %d\nSeat Number    : %d\nPassenger Name : %s\nDestination    : Bhubaneshwar to Nagpur\nTime           : 05:00 to 22:30 (840 km)\nFare           : 1000\n\n",Bus_Num,seat_Num,Pass_Nam);
-        }
+    fclose(vbt1);
+    if( count == 0){
+        printf("\n\nNo Tickets Booked Till Now\n\n");
         
+    }else {
         
-        curr++;
-        if(curr<=32){
-            fseek(vbt,curr,SEEK_SET);
+        FILE *vbt;
+        vbt = fopen("ViewTickets.txt","r");
+
+
+        printf("BN = Bus Number\nSN = Seat Number\nPN = Passenger Number\n\n");
+        printf("BN %5s SN %5s PN\n"," "," "," ");
+        //loop through the file and print it 
+        char c = fgetc(vbt);
+        while(c != EOF){
+            if(c==' ' ){
+                //cnt++;
+                printf("%5s"," ");
+            }
+            printf("%c",c);
+            c = fgetc(vbt);
+
+            
         }
-        
-        //fgetc(vbt);
-        // fgetc(vbt);
-        // fgetc(vbt);
+        fclose(vbt);
     }
 
 
 
-    printf("enter any key to return to menu");
+
+
+
+    printf("\nenter any key to return to menu");
     getch();
 
-    fclose(vbt);
+    
 
     showMenu();
 }
