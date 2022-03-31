@@ -316,9 +316,9 @@ void view_Tickets(){
     while(c1 != EOF){
         if(c1==' ' ){
             //cnt++;
-            printf("%5s"," ");
+            //printf("%5s"," ");
         }
-        printf("%c",c1);
+        //printf("%c",c1);
         c1 = fgetc(vbt1);
 
         count++;
@@ -334,7 +334,7 @@ void view_Tickets(){
         vbt = fopen("ViewTickets.txt","r");
 
 
-        printf("BN = Bus Number\nSN = Seat Number\nPN = Passenger Number\n\n");
+        printf("\n\nBN = Bus Number\nSN = Seat Number\nPN = Passenger Number\n\n");
         printf("BN %5s SN %5s PN\n"," "," "," ");
         //loop through the file and print it 
         char c = fgetc(vbt);
@@ -356,7 +356,7 @@ void view_Tickets(){
 
 
 
-    printf("\nenter any key to return to menu");
+    printf("\n\nenter any key to return to menu");
     getch();
 
     
