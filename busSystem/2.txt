@@ -23,7 +23,7 @@ empty$
 empty$
 empty$
 empty$
-booked$
+empty$
 booked$
 empty$
 empty$

@@ -226,11 +226,8 @@ void cancelTickets(){
     printf("enter seat number = ");
     scanf("%d",&seat_number);
 
-    printf("gone into fnc");
     deleteTicket(filename, seat_number);
-    printf("gone into fnc");
     deleteViewTickets(filename,seat_number);
-    printf("came out of fnc");
 
     printf("DELETED\n");
     printf("press anything to continue");
@@ -241,17 +238,7 @@ void cancelTickets(){
 }
 
 void deleteViewTickets(char filename[], int seat_number){
-    FILE *fp = fopen("ViewTickets.txt","r");
-
-
-    int busNo,seatNo;
-    char name[MAX_LINE];
-    fscanf(fp,"%d %d %s",&busNo,&seatNo,&name);
-    printf("%d %d",busNo,seatNo);
-    fscanf(fp,"%d %d %s",&busNo,&seatNo,&name);
-    printf("%d %d",busNo,seatNo);
-    //printf("%c %c",c,c2);
-    fclose(fp);
+    FILE *fp = 
 }
 
 //support function of cancelTickets()
