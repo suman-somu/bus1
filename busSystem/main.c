@@ -338,13 +338,17 @@ void updateViewTickets(int busNumber, int seat_number){
 
         while(keepLoop){
             
+            if(feof(fp)){
+                keepLoop = false;
+            }
+            
             char buffer[MAX_LINE];
             int busNo,seatNo;
             char name[MAX_LINE];
             char name1[MAX_LINE];
             fscanf(fp,"%d %d %s %s",&busNo,&seatNo,&name,&name1);
             fgets(buffer,MAX_LINE,fp);
-            printf("%s",buffer);
+            //printf("%s",buffer);
             if(busNo==busNumber && seat_number==seatNo){
                 printf("CHECK1 ");
                 continue;
@@ -355,9 +359,7 @@ void updateViewTickets(int busNumber, int seat_number){
             }
 
             
-            if(feof(fp)){
-                keepLoop = false;
-            }
+            
 
 
         }
