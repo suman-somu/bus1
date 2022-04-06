@@ -285,68 +285,96 @@ void cancelTickets(){
 
 }
 
+//support fnc of cancelTickets() used to update the ViewTickets.txt 
 void updateViewTickets(int busNumber, int seat_number){
 
-    char main_file[FILENAME_SIZE];
-    char temp_file[FILENAME_SIZE];
+    FILE *vbt1;
+    vbt1 = fopen("ViewTickets.txt","r");
+    int count = 0;
+    char c1 = fgetc(vbt1);
+    while(c1 != EOF){
+        if(c1==' ' ){
+            //cnt++;
+            //printf("%5s"," ");
+        }
+        //printf("%c",c1);
+        c1 = fgetc(vbt1);
 
+        count++;
+    }
 
-    strcpy(main_file,"ViewTickets.txt");
+    fclose(vbt1);
 
-    strcpy(temp_file,"temp__");
-    strcat(temp_file,main_file);
-
-    
-
-    FILE *fp = fopen(main_file,"r");
-    FILE *temp = fopen(temp_file,"w");
-
-
-    bool keepLoop;
-    if(feof(fp)){
-        keepLoop = false;
+    if(count==0)
+    {
+        printf("\n\n\nNo bus is booked till now.\n");
+        printf("\n\nenter any key to return to menu");
+        getch();
     }
     else {
-        keepLoop = true;
-    }
+        char main_file[FILENAME_SIZE];
+        char temp_file[FILENAME_SIZE];
 
-    printf("CHECK 1 ");
-    while(keepLoop){
-        printf("check ");
-        char buffer[MAX_LINE];
-        int busNo,seatNo;
-        char name[MAX_LINE];
-        char name1[MAX_LINE];
-        fscanf(fp,"%d %d %s %s",&busNo,&seatNo,&name,&name1);
-        fgets(buffer,MAX_LINE,fp);
-        printf("%s",buffer);
-        if(busNo==busNumber && seat_number==seatNo){
-            printf("CHECK1 ");
-            continue;
-        }
-        else {
-            printf("CHECK ");
-            fprintf(temp,"%d %d %s %s %c",busNo,seatNo,name,name1,'\n');
-        }
+
+        strcpy(main_file,"ViewTickets.txt");
+
+        strcpy(temp_file,"temp__");
+        strcat(temp_file,main_file);
 
         
+
+        FILE *fp = fopen(main_file,"r");
+        FILE *temp = fopen(temp_file,"w");
+
+
+        bool keepLoop;
         if(feof(fp)){
             keepLoop = false;
         }
+        else {
+            keepLoop = true;
+        }
 
 
-    }
-    printf("CHECK 2");
+        while(keepLoop){
+            
+            char buffer[MAX_LINE];
+            int busNo,seatNo;
+            char name[MAX_LINE];
+            char name1[MAX_LINE];
+            fscanf(fp,"%d %d %s %s",&busNo,&seatNo,&name,&name1);
+            fgets(buffer,MAX_LINE,fp);
+            printf("%s",buffer);
+            if(busNo==busNumber && seat_number==seatNo){
+                printf("CHECK1 ");
+                continue;
+            }
+            else {
+                printf("CHECK ");
+                fprintf(temp,"%d %d %s %s %c",busNo,seatNo,name,name1,'\n');
+            }
 
-    fclose(temp);
-    fclose(fp);
+            
+            if(feof(fp)){
+                keepLoop = false;
+            }
 
-    remove(main_file);
-    rename(temp_file,main_file);
+
+        }
+        printf("CHECK 2");
+
+        fclose(temp);
+        fclose(fp);
+
+        remove(main_file);
+        rename(temp_file,main_file);
+
+        }
+
 
 }
 
-//support function of cancelTickets()
+//support function of cancelTickets() which is used to change the respective bus files
 void deleteTicket(char filename[], int seat_number){
     FILE *file,*temp;
 
