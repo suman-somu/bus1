@@ -25,6 +25,15 @@ int howManyEmpty(char filename[]);
 void updateViewTickets(int busNum, int seatNo);
 void LogInSucc();
 
+
+void gotoxy(int x, int y){
+
+    COORD c;
+    c.X = x;
+    c.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
+}
+
 int main(){
 
     startup();
@@ -36,12 +45,29 @@ int main(){
 
 void startup()
 {
+    gotoxy(55,10);
+    // printf("BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
+    // printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    // printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------\n");
+    // getch();
+    // printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-    printf("                                                       BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
-    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------\n");
+    printf("BUS TICKET RESERVATION SYSTEM");
+    gotoxy(55,11);
+    printf("Made by SHREEYA, HEMANT, SUMAN");
+    gotoxy(55,12);
+    printf("IIIT BHUBANESHWAR");
+    gotoxy(55,13);
+    printf("IIIT BHUBANESHWAR");
+    gotoxy(0,17);
+    printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------");
+    gotoxy(80,20);
     getch();
-    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+
+
+
+
 }
 
 
@@ -58,8 +84,10 @@ void LogInSucc(){
         printf(".");
         Sleep(500);
         system("cls");
-        printf("----------------------------------------LOGIN IS SUCCESSFUL-------------------------------------------------\n");
-        printf("----------------Press any key to go to main menu...--------------\n");
+        gotoxy(100,20);
+        printf("LOGIN IS SUCCESSFUL");
+        gotoxy(50,22);
+        printf("-----------------------------------------Press any key to go to main menu...-------------------------------------------\n");
         getch();
 
         showMenu();
@@ -152,19 +180,22 @@ void showMenu(){
 
 
     if (chooseOption==1){
-            availableBus();
+        availableBus();
     }
     else if(chooseOption==2){
-            bookTickets();
+        bookTickets();
     }
     else if (chooseOption==3){
-            cancelTickets();
+        cancelTickets();
     }
     else if(chooseOption==4){
-            view_Tickets();
+        view_Tickets();
     }
     else if (chooseOption==5){
-            printf("******Thank You for using this system****** ");
+        system("cls");
+        gotoxy(80,20);
+        printf("******Thank You for using this system****** ");
+        gotoxy(80,40);
     }
     else {
         printf("WRONG OPTION\nENTER CORRECT OPTION\n\npress anything to continue");
@@ -249,7 +280,7 @@ void cancelTickets(){
 
     printf("\n\n\nYour Tickets has been CANCELLED\n\n\n");
     if (Bus_Num==100){
-        printf("Total fare is 50\n");       
+        printf("Total fare is 50\n");
     }
     else if (Bus_Num==200) {
         printf("Total fare is 150\n");
@@ -285,7 +316,7 @@ void cancelTickets(){
 
 }
 
-//support fnc of cancelTickets() used to update the ViewTickets.txt 
+//support fnc of cancelTickets() used to update the ViewTickets.txt
 void updateViewTickets(int busNumber, int seat_number){
 
     FILE *vbt1;
@@ -321,7 +352,7 @@ void updateViewTickets(int busNumber, int seat_number){
         strcpy(temp_file,"temp__");
         strcat(temp_file,main_file);
 
-        
+
 
         FILE *fp = fopen(main_file,"r");
         FILE *temp = fopen(temp_file,"w");
@@ -337,11 +368,11 @@ void updateViewTickets(int busNumber, int seat_number){
 
 
         while(keepLoop){
-            
+
             if(feof(fp)){
                 keepLoop = false;
             }
-            
+
             char buffer[MAX_LINE];
             int busNo,seatNo;
             char name[MAX_LINE];
@@ -350,20 +381,14 @@ void updateViewTickets(int busNumber, int seat_number){
             fgets(buffer,MAX_LINE,fp);
             //printf("%s",buffer);
             if(busNo==busNumber && seat_number==seatNo){
-                printf("CHECK1 ");
                 continue;
             }
             else {
-                printf("CHECK ");
                 fprintf(temp,"%d %d %s %s %c",busNo,seatNo,name,name1,'\n');
             }
 
-            
-            
-
 
         }
-        printf("CHECK 2");
 
         fclose(temp);
         fclose(fp);
