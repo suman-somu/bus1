@@ -45,22 +45,15 @@ int main(){
 
 void startup()
 {
-    gotoxy(55,10);
-    // printf("BUS TICKET RESERVATION SYSTEM\n                                                       Made by SHREEYA, HEMANT, SUMAN\n                                                        IIIT BHUBANESHWAR\n");
-    // printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-    // printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------\n");
-    // getch();
-    // printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
+    gotoxy(80,10);
     printf("BUS TICKET RESERVATION SYSTEM");
-    gotoxy(55,11);
+    gotoxy(80,11);
     printf("Made by SHREEYA, HEMANT, SUMAN");
-    gotoxy(55,12);
+    gotoxy(80,13);
     printf("IIIT BHUBANESHWAR");
-    gotoxy(55,13);
-    printf("IIIT BHUBANESHWAR");
+
     gotoxy(0,17);
-    printf("---------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------");
+    printf("---------------------------------------------------------------------------PRESS ANY KEY TO CONTINUE-------------------------------------------------------------------------------------------");
     gotoxy(80,20);
     getch();
 
@@ -72,7 +65,11 @@ void startup()
 
 
 void LogInSucc(){
- bool UserNameValid = Valid();
+
+    system("cls");
+
+    bool UserNameValid = Valid();
+
     if(UserNameValid==true){
         printf("\n");
         printf("LOADING");
@@ -84,9 +81,9 @@ void LogInSucc(){
         printf(".");
         Sleep(500);
         system("cls");
-        gotoxy(100,20);
+        gotoxy(85,20);
         printf("LOGIN IS SUCCESSFUL");
-        gotoxy(50,22);
+        gotoxy(38,22);
         printf("-----------------------------------------Press any key to go to main menu...-------------------------------------------\n");
         getch();
 
@@ -116,14 +113,17 @@ void LogInSucc(){
 }
 
 
-//takes user input of user-name and password and checks if it's matching or not
+//support fnc of LogInSucc() - takes user input of user-name and password and checks if it's matching or not
 bool Valid(){
 
-
+    //gotoxy(0,25);
+    //printf("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     char pass[30];
     char name[30];
-    printf("-----------------------------------------------LOGIN--------------------------------------------------------\n");
-    printf("                    ENTER USERNAME :- ");
+    gotoxy(90,13);
+    printf("LOGIN");
+    gotoxy(85,20);
+    printf("ENTER USERNAME :- ");
     scanf(" %[^\n]%*c", name);
 
     char nCheck[30]={"suman"};
@@ -132,8 +132,9 @@ bool Valid(){
     int i;
     if(  strcmp(name, nCheck) ==0)
     {
-        printf("\n");
-        printf("                    ENTER PASSWORD :- ");
+        //printf("\n");
+        gotoxy(85,21);
+        printf("ENTER PASSWORD :- ");
         //gets(pass);
 
         for(i=0; i<30; i++)
@@ -194,7 +195,7 @@ void showMenu(){
     else if (chooseOption==5){
         system("cls");
         gotoxy(80,20);
-        printf("******Thank You for using this system****** ");
+        printf("******Thank You for using our service****** ");
         gotoxy(80,40);
     }
     else {
@@ -596,8 +597,8 @@ void bookTickets(){
 
     printBus(filename);
 
-    int AvTic = 20;
-    //howManyEmpty(filename);
+    //int AvTic = 20;
+    int AvTic = howManyEmpty(filename);
 
     printf("Available Tickets:--------> %d\n\n",AvTic);
     int num_Tic,Seat_Num;
@@ -683,32 +684,29 @@ void bookTickets(){
     showMenu();
 }
 
+
 int howManyEmpty(char filename[]){
 
 
     FILE *file = fopen(filename,"r");
     char buffer[16];
-    char check[16]="empty";
+    char check[16]="empty$";
     bool keep_reading = true;
 
-    int count = 0;
+    int count = -1;
 
     //loop through the file and check each line to find "empty" and increment the count variable
     while(keep_reading){
 
-        fgets(buffer, 16, file);
-        printf("%s",buffer);
-
-        if (feof(file)){
-            printf("first out");
-            keep_reading = false;
-
-        }
+        fgets(buffer, 7, file);
+        
         if (strcmp(buffer,check)==0){
             count++;
-            printf("second");
         }
 
+        if (feof(file)){
+            keep_reading = false;
+        }
 
     }
     fclose(file);
