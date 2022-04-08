@@ -129,7 +129,7 @@ bool Valid(){
     printf("ENTER USERNAME :- ");
     scanf(" %[^\n]%*c", name);
 
-    char nCheck[30]={"SUMANisTheBest"};
+    char nCheck[30]={"suman"};
     char pCheck[30]={"sahoo"};
     char ch1;
     int i;
