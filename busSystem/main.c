@@ -12,18 +12,19 @@
 
 
 void showMenu();
+void LogInSucc();
+void startup();
 bool Valid();
 void availableBus();
-void bookTickets();
-void updateBus(char name[], int seatNumber, char filename[]);
 void view_Tickets();
-void printBus(char filename[]);
-void startup();
-void deleteTicket(char filename[], int seatNo);
+void bookTickets();
 void cancelTickets();
-int howManyEmpty(char filename[]);
+void updateBus(char name[], int seatNumber, char filename[]);
+void printBus(char fileNameOfBus[]);
+void deleteTicket(char fileNameOfBus[], int seatNo);
+int howManyEmpty(char fileNameOfBus[]);
 void updateViewTickets(int busNum, int seatNo);
-void LogInSucc();
+
 
 
 void gotoxy(int x, int y){
@@ -71,7 +72,8 @@ void LogInSucc(){
     bool UserNameValid = Valid();
 
     if(UserNameValid==true){
-        printf("\n");
+        gotoxy(85,25);
+        //printf("\n");
         printf("LOADING");
         Sleep(500);
         printf(".");
@@ -90,7 +92,8 @@ void LogInSucc(){
         showMenu();
     }
     else{
-         printf("\n");
+        gotoxy(85,25);
+         //printf("\n");
         printf("LOADING");
         Sleep(300);
         printf(".");
@@ -99,11 +102,13 @@ void LogInSucc(){
         Sleep(300);
         printf(".");
         Sleep(300);
+        system("cls");
+        gotoxy(85,20);
         printf("\nINVALID USERNAME/PASSWORD\n\n\n");
         printf("press 1 to exit\npress any key to try again\n");
         int ch;
         ch = getch();
-        if(ch==1){
+        if(ch=='1'){
             exit(0);
         }
         else{
@@ -116,8 +121,6 @@ void LogInSucc(){
 //support fnc of LogInSucc() - takes user input of user-name and password and checks if it's matching or not
 bool Valid(){
 
-    //gotoxy(0,25);
-    //printf("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     char pass[30];
     char name[30];
     gotoxy(90,13);
@@ -126,7 +129,7 @@ bool Valid(){
     printf("ENTER USERNAME :- ");
     scanf(" %[^\n]%*c", name);
 
-    char nCheck[30]={"suman"};
+    char nCheck[30]={"SUMANisTheBest"};
     char pCheck[30]={"sahoo"};
     char ch1;
     int i;
@@ -177,7 +180,7 @@ void showMenu(){
     printf("1.\tView all available bus\n2.\tBook tickets\n3.\tCancel tickets\n4.\tView book tickets\n5.\tExit\n\n");
 
     int chooseOption;
-    scanf("%d",&chooseOption);
+    scanf(" %d",&chooseOption);
 
 
     if (chooseOption==1){
@@ -275,45 +278,59 @@ void cancelTickets(){
     scanf("%d",&seat_number);
 
 
-    deleteTicket(filename, seat_number);
-    updateViewTickets(Bus_Num,seat_number);
+    printf("YOU ARE GOING TO CANCEL A TICKET\n\n\n PRESS \nanything  to continue to cancel\n1 to exit the cancel process");
+
+    char c = getch();
+
+    if( c == '1'){
+        printf("\n\n\nPROCESS TERMINATED\npress anything to return");
+        getch();
+        showMenu();
+    }
+    else{
+        deleteTicket(filename, seat_number);
+        updateViewTickets(Bus_Num,seat_number);
 
 
-    printf("\n\n\nYour Tickets has been CANCELLED\n\n\n");
-    if (Bus_Num==100){
-        printf("Total fare is 50\n");
+        printf("\n\n\nYour Tickets has been CANCELLED\n\n\n");
+        if (Bus_Num==100){
+            printf("Total fare is 50\n");
+        }
+        else if (Bus_Num==200) {
+            printf("Total fare is 150\n");
+        }
+        else if (Bus_Num==300) {
+            printf("Total fare is 30\n");
+        }
+        else if (Bus_Num==400){
+            printf("Total fare is 200\n");
+        }
+        else if (Bus_Num==500) {
+        printf("Total fare is 500\n");
+        }
+        else if (Bus_Num==600) {
+            printf("Total fare is 400\n");
+        }
+        else if (Bus_Num==700) {
+            printf("Total fare is 600\n");
+        }
+        else if (Bus_Num==800){
+            printf("Total fare is 1200\n");
+        }
+        else if (Bus_Num==900){
+            printf("Total fare is 600\n");
+        }
+        else if (Bus_Num==1000){
+            printf("Total fare is 1000\n");
+        }
+        printf("\n\n\nTotal Amount Will be refunded\n\n");
+        printf("press anything to continue");
+        getch();
+        showMenu();
     }
-    else if (Bus_Num==200) {
-        printf("Total fare is 150\n");
-    }
-    else if (Bus_Num==300) {
-        printf("Total fare is 30\n");
-    }
-    else if (Bus_Num==400){
-        printf("Total fare is 200\n");
-    }
-    else if (Bus_Num==500) {
-       printf("Total fare is 500\n");
-    }
-    else if (Bus_Num==600) {
-        printf("Total fare is 400\n");
-    }
-    else if (Bus_Num==700) {
-        printf("Total fare is 600\n");
-    }
-    else if (Bus_Num==800){
-        printf("Total fare is 1200\n");
-    }
-    else if (Bus_Num==900){
-        printf("Total fare is 600\n");
-    }
-    else if (Bus_Num==1000){
-        printf("Total fare is 1000\n");
-    }
-    printf("\n\n\nTotal Amount Will be refund\n\n");
-    printf("press anything to continue");
-    getch();
-    showMenu();
+
+
+
 
 }
 
@@ -699,7 +716,7 @@ int howManyEmpty(char filename[]){
     while(keep_reading){
 
         fgets(buffer, 7, file);
-        
+
         if (strcmp(buffer,check)==0){
             count++;
         }
@@ -805,5 +822,3 @@ void printBus(char filename[]){
 
 }
 
-
-//what is the difference bet pointer function and declaring the pointer fnc

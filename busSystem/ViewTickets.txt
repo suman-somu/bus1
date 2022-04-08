@@ -1,10 +1,5 @@
-100 2 swapnil kole 
-100 7 karanvir singh 
-100 11 rayhan sheikh 
 100 18 Aditya Agarwal 
-100 20 Monalisa Mohapatra 
 100 27 Hemant Shah 
-100 31 Suman Sahoo 
-
-100 30 Virat Kohli 
-100 32 Rohit Sharma 
+100 3 BEN TEN 
+100 12 Swapnil Kole 
+100 22 Humangosaurus Kumar 
