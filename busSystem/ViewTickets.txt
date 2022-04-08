@@ -1,5 +1,2 @@
-100 18 Aditya Agarwal 
-100 27 Hemant Shah 
-100 3 BEN TEN 
-100 12 Swapnil Kole 
-100 22 Humangosaurus Kumar 
+100 8 Suman Sahoo 
+100 22 kumar biswal 

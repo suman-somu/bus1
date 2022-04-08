@@ -278,7 +278,7 @@ void cancelTickets(){
     scanf("%d",&seat_number);
 
 
-    printf("YOU ARE GOING TO CANCEL A TICKET\n\n\n PRESS \nanything  to continue to cancel\n1 to exit the cancel process");
+    printf("\n\n\nYOU ARE ING TO CANCEL A TICKET\n\n\n PRESS \nanything  to continue to cancel\n1 to exit the cancel process");
 
     char c = getch();
 
@@ -414,7 +414,7 @@ void updateViewTickets(int busNumber, int seat_number){
         remove(main_file);
         rename(temp_file,main_file);
 
-        }
+    }
 
 
 }
@@ -531,7 +531,7 @@ void view_Tickets(){
         vbt = fopen("ViewTickets.txt","r");
 
 
-        printf("\n\nBN = Bus Number\nSN = Seat Number\nPN = Passenger Number\n\n");
+        printf("\n\nBN = Bus Number\nSN = Seat Number\nPN = Passenger Name\n\n");
         printf("BN %5s SN %5s PN\n"," "," "," ");
         //loop through the file and print it
         char c = fgetc(vbt);
@@ -683,7 +683,7 @@ void bookTickets(){
 
 
             FILE *vbt = fopen("ViewTickets.txt","a");
-            fprintf(vbt, "\n%d %d %s ",Bus_Num,Seat_Num, Pass_Nam);
+            fprintf(vbt, "%d %d %s %c",Bus_Num,Seat_Num, Pass_Nam,'\n');
             fclose(vbt);
         }else{
             printf("Your ticket has not been booked\n");
