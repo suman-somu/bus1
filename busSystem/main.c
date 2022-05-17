@@ -25,8 +25,6 @@ void deleteTicket(char fileNameOfBus[], int seatNo);
 int howManyEmpty(char fileNameOfBus[]);
 void updateViewTickets(int busNum, int seatNo);
 
-
-
 void gotoxy(int x, int y){
 
     COORD c;
@@ -34,6 +32,8 @@ void gotoxy(int x, int y){
     c.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }
+
+
 
 int main(){
 
@@ -129,7 +129,7 @@ bool Valid(){
     printf("ENTER USERNAME :- ");
     scanf(" %[^\n]%*c", name);
 
-    char nCheck[30]={"suman"};
+    char nCheck[30]={"SumanPapa"};
     char pCheck[30]={"sahoo"};
     char ch1;
     int i;
@@ -177,7 +177,7 @@ void showMenu(){
     system("cls");
 
     printf("\n\nWELCOME TO SHS BUS RESERVATION SYSTEM\n");
-    printf("1.\tView all available bus\n2.\tBook tickets\n3.\tCancel tickets\n4.\tView book tickets\n5.\tExit\n\n");
+    printf("1.\tView all available bus\n2.\tBook tickets\n3.\tCancel tickets\n4.\tView book tickets\n5.\tKnow the status of a bus\n6.\tExit\n\n");
 
     int chooseOption;
     scanf(" %d",&chooseOption);
@@ -195,11 +195,70 @@ void showMenu(){
     else if(chooseOption==4){
         view_Tickets();
     }
-    else if (chooseOption==5){
+    else if (chooseOption==6){
         system("cls");
         gotoxy(80,20);
         printf("******Thank You for using our service****** ");
         gotoxy(80,40);
+    }
+    else if( chooseOption ==5){
+        int Bus_Num;
+        printf("enter the bus number to know the status");
+        scanf("%d",&Bus_Num);
+        char filename[FILENAME_SIZE];
+        if (Bus_Num==100){
+            //printf("Total fare is 50\n");
+            strcpy(filename,"1.txt");
+        }
+        else if (Bus_Num==200) {
+            //printf("Total fare is 150\n");
+            strcpy(filename,"2.txt");
+        }
+        else if (Bus_Num==300) {
+            //printf("Total fare is 30\n");
+            strcpy(filename,"3.txt");
+        }
+        else if (Bus_Num==400){
+            //printf("Total fare is 200\n");
+            strcpy(filename,"4.txt");
+        }
+        else if (Bus_Num==500) {
+        //printf("Total fare is 500\n");
+        strcpy(filename,"5.txt");
+        }
+        else if (Bus_Num==600) {
+            //printf("Total fare is 400\n");
+            strcpy(filename,"6.txt");
+        }
+        else if (Bus_Num==700) {
+            //printf("Total fare is 600\n");
+            strcpy(filename,"7.txt");
+        }
+        else if (Bus_Num==800){
+            //printf("Total fare is 1200\n");
+            strcpy(filename,"8.txt");
+        }
+        else if (Bus_Num==900){
+            //printf("Total fare is 600\n");
+            strcpy(filename,"9.txt");
+        }
+        else if (Bus_Num==1000){
+            //printf("Total fare is 1000\n");
+            strcpy(filename,"10.txt");
+        }
+        else{
+            printf("No bus found\n");
+            printf("\npress any key to go back\n");
+            getch();
+            showMenu();
+        }
+
+        printBus(filename);
+
+        printf("\n\n\nenter anything to continue\n");
+        getch();
+        showMenu();
+
     }
     else {
         printf("WRONG OPTION\nENTER CORRECT OPTION\n\npress anything to continue");
@@ -278,7 +337,7 @@ void cancelTickets(){
     scanf("%d",&seat_number);
 
 
-    printf("\n\n\nYOU ARE ING TO CANCEL A TICKET\n\n\n PRESS \nanything  to continue to cancel\n1 to exit the cancel process");
+    printf("\n\n\nYOU ARE GOING TO CANCEL A TICKET\n\n\nPRESS\nanything - to continue to cancel\n1 - to exit the cancel process");
 
     char c = getch();
 
